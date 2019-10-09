@@ -1,0 +1,25 @@
+.angka, .operand{
+    padding: 20px;
+    border: 1px solid black;
+    margin: 10px 0;
+}
+
+.angka > button, .operand > button {
+    background: white;
+    border: 1px solid black;
+    font-size: 18px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.angka > button:hover, .operand > button:hover {
+    background: greenyellow;
+}
+
+.screen {
+    padding: 20px;
+    background: black;
+    color: greenyellow;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+}
