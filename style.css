@@ -1,10 +1,10 @@
-.angka,.operand {
+.angka,.operand,.result {
   padding: 20px;
   border: 1px inset black;
   margin: 10px 0;
 }
 
-.angka > button, .operand > button {
+.angka > button, .operand > button, .result > button {
   background: white;
   border: 1px solid black;
   font-size: 18px;
@@ -13,7 +13,7 @@
   border-radius: 20%;
 }
 
-.angka > button:hover, .operand > button:hover {
+.angka > button:hover, .operand > button:hover, .result > button:hover {
   background: greenyellow;
 }
 

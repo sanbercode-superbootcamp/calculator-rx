@@ -1,6 +1,88 @@
 const { fromEvent, merge } = rxjs;
 const { map, takeUntil, tap } = rxjs.operators;
 
+const number = document.querySelectorAll(".angka>button"); //ksh >button biar layar g kluar button
+const operator = document.querySelectorAll(".operand");
+const result = document.querySelectorAll(".result");
+const screen = document.getElementById("screen");
+
+//listen(er)
+const numberclick$ = fromEvent(number, "click").pipe(map((thiss) => parseInt(thiss.toElement.innerHTML)));
+const operatorclick$ = fromEvent(operator, "click").pipe(map((thiss) => thiss.toElement.innerHTML));
+const resultclick$ = fromEvent(result, "click").pipe(map((thiss) => thiss.toElement.innerHTML));
+
+
+//returning number to screen (deprecated)
+const shownumber$ = numberclick$.pipe(
+    map((thatbutton) => {
+        console.log(thatbutton)
+        return thatbutton.toElement.innerHTML
+    })
+)
+
+//deklarasi tumbal
+let number1Chunk = "";
+let number2Chunk = "";
+let number1Finished = null;
+let number2Finished = null;
+let operatoris = null;
+let resulttt = null;
+    
+//machine working pemrosesan event by stream blabla
+const testcalc$ = merge(numberclick$, operatorclick$, resultclick$).pipe(map((watisdis) => {
+    if(typeof(watisdis) == "number"){
+        if(number1Finished == null){
+            return number1Chunk += watisdis.toString()
+        }
+        else{
+            return number2Chunk += watisdis.toString()
+        }
+        
+    }
+    else if(typeof(watisdis) == "string"){
+        number1Finished = parseInt(number1Chunk);
+        
+        if(watisdis != "=" && operatoris == null){
+            return operatoris = watisdis;
+        }
+        else{
+        number2Finished = parseInt(number2Chunk);
+            
+        switch(operatoris){
+        case "+" : return resulttt = number1Finished + number2Finished;
+        break;
+        case "-" : return resulttt = number1Finished - number2Finished;
+        break;
+        case "*" : return resulttt = number1Finished * number2Finished;
+        break;
+        case "/" : return resulttt = number1Finished / number2Finished;
+        break;
+        }
+        }
+        
+    }
+}))
+
+//pemanggilan event emitter?
+testcalc$.subscribe((clickedNumber) => {
+    //just innerworking
+    console.log("number1Chunk = "+number1Chunk);
+    console.log("number2Chunk = "+number2Chunk);
+    console.log("number1Finished = "+number1Finished);
+    console.log("number2Finished = "+number2Finished);
+    console.log("operatoris = "+operatoris);
+    console.log("result = "+resulttt)
+    //just innerworking
+    screen.innerHTML = clickedNumber;
+});
+
+
+
+
+/*
+const { fromEvent, merge } = rxjs;
+const { map, takeUntil, tap } = rxjs.operators;
+
 const numbers = document.querySelectorAll(".angka>button");
 
 const operands = document.querySelectorAll(".operand>button");
@@ -52,3 +134,4 @@ const calculator$ = merge(
 )
 
 calculator$.subscribe(calc => console.log(calc));
+*/
