@@ -16,8 +16,8 @@ box.addEventListener('mousedown', (start) => {
         //remoev highlight on text
         move.preventDefault();
 
-        const positionTop = move.clientY - start.offsetY;
-        const positionLeft = move.clientX - start.offsetX;
+        let positionTop = move.clientY - start.offsetY;
+        let positionLeft = move.clientX - start.offsetX;
         box.style.top = positionTop + "px";
         box.style.left = positionLeft + "px";
     };
