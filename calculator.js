@@ -1,54 +1,94 @@
 const { fromEvent, merge } = rxjs;
-const { map, takeUntil, tap } = rxjs.operators;
+const { tap, map } = rxjs.operators;
 
-const numbers = document.querySelectorAll(".angka>button");
+const numbers = document.querySelectorAll(".numbers > button");
+const operations = document.querySelectorAll(".operations > button");
+const clear = document.querySelector(".clear > button");
 
-const operands = document.querySelectorAll(".operand>button");
+const arrNum = ['one$', 'two$', 'three$', 'four$', 'five$', 'six$', 'seven$', 'eight$', 'nine$', 'zero$'];
 
-const plus = operands[0];
-
-const zero$ = fromEvent(numbers[0], "click").pipe(map(() => 0));
-const one$ = fromEvent(numbers[1], "click").pipe(map(() => 1));
-const two$ = fromEvent(numbers[2], "click").pipe(map(() => 2));
-const three$ = fromEvent(numbers[3], "click").pipe(map(() => 3));
-const four$ = fromEvent(numbers[4], "click").pipe(map(() => 4));
-const five$ = fromEvent(numbers[5], "click").pipe(map(() => 5));
-const six$ = fromEvent(numbers[6], "click").pipe(map(() => 6));
-const seven$ = fromEvent(numbers[7], "click").pipe(map(() => 7));
-const eight$ = fromEvent(numbers[8], "click").pipe(map(() => 8));
-const nine$ = fromEvent(numbers[9], "click").pipe(map(() => 9));
-
-const plus$ = fromEvent(plus, "click").pipe(map(() => "plus"));
+arrNum.forEach((item, index) => {
+  window[item] = fromEvent(numbers[index], 'click').pipe(map(() => index));
+});
 
 const numbers$ = merge(
-  zero$,
-  one$,
-  two$,
-  three$,
-  four$,
-  six$,
-  seven$,
-  eight$,
-  nine$
+  // arrNum.map((num) => window[num]).join()
+  one$, two$, three$, four$, five$, six$, seven$, eight$, nine$, zero$
 );
 
-const operators$ = merge(plus$);
+const add$ = fromEvent(operations[0], 'click').pipe(map(() => '+'))
+const substract$ = fromEvent(operations[1], 'click').pipe(map(() => '-'))
+const multiply$ = fromEvent(operations[2], 'click').pipe(map(() => '*'))
+const divide$ = fromEvent(operations[3], 'click').pipe(map(() => '/'))
+const equal$ = fromEvent(operations[4], 'click').pipe(map(() => '='))
 
-let number1 = '';
-let number2 = '';
-let operand = null;
+const operators$ = merge(add$, substract$, multiply$, divide$, equal$);
 
-const calculator$ = merge(
-  numbers$,
-  operators$
-).pipe(
-  tap((number) => {
-    number1 = number1 + number
+const clear$ = fromEvent(clear, 'click')
+
+
+// 
+// OPERATION
+
+let resultTemp = '';
+let operator = null;
+let result = 0;
+
+// init
+const number$ = numbers$.pipe(
+  tap((input) => {
+    resultTemp += input;
   }),
-  takeUntil(operators$),
-  map((operator) => {
-    return operator;
-  })
-)
+  map(() => resultTemp)
+);
 
-calculator$.subscribe(calc => console.log(calc));
+const calculator$ = operators$.pipe(
+  tap((input) => {
+
+    if (!operator) {
+      result = Number(resultTemp);
+    } else {
+      switch(operator) {
+        case '+':
+          result += Number(resultTemp);
+        break;
+        case '-':
+          result -= Number(resultTemp);
+        break;
+        case '*':
+          result *= Number(resultTemp);
+        break;
+        case '/':
+          result /= Number(resultTemp);
+        break;
+      }
+    }
+    operator = input;
+    // if (input == '=') {
+    //   document.getElementById('log').textContent += ` = ${result} `;
+    // } else {
+    //   document.getElementById('log').textContent += `${resultTemp} ${input} `;
+    // }
+    document.getElementById('log').textContent += `${resultTemp} ${input} `;
+    resultTemp = ''; // reset resultTemp
+  }),
+  map(() => result)
+);
+
+// subscriber
+number$.subscribe(number => {
+  document.getElementById('result').textContent = number;
+});
+
+calculator$.subscribe((result) => {
+  document.getElementById('result').textContent = result;
+});
+
+clear$.subscribe(() => {
+  document.getElementById('result').textContent = 0;
+  document.getElementById('log').textContent = ' ';
+  
+  resultTemp = '';
+  operator = null;
+  result = 0;
+})
