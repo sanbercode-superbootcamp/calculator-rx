@@ -9,12 +9,23 @@ document.addEventListener('mousemove', (moveEvent) => {
 */
 
 const box = document.getElementById("box");
-
+// clicking box
 box.addEventListener('mousedown', (start) => {
-    document.addEventListener('mousemove', (move) => {
+    //func for move box
+    const onMouseMove = (move) => {
+        //remoev highlight on text
+        move.preventDefault();
+
         const positionTop = move.clientY - start.offsetY;
         const positionLeft = move.clientX - start.offsetX;
         box.style.top = positionTop + "px";
         box.style.left = positionLeft + "px";
-    });
+    };
+    //add listener when mouse moving 
+    document.addEventListener('mousemove', onMouseMove);
+    //add listener when unclick mouse
+    box.addEventListener('mouseup', () => {
+        //remove listener mousemove
+        document.removeEventListener('mousemove', onMouseMove);
+    })
 });
