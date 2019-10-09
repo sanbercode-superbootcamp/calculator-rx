@@ -10,6 +10,9 @@ This task is about creating calculator which much different that before. Basical
 + Javascript DOM
 + HTML and CSS
 
+## Simulation
+**https://arifintahu.github.io/calculator-rx/**
+
 ## Reference
 1. **Learn RxJS** - https://www.learnrxjs.io/ - https://rxjs-dev.firebaseapp.com/
 2. **More About RxJS** - https://medium.com/thecodinghype/reactive-programming-in-javascript-using-rxjs-3b05e186c115
