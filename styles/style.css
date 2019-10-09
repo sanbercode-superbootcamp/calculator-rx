@@ -1,0 +1,47 @@
+/* .angka, .operand{
+    padding : 20px;
+    border : 1px solid black;
+    margin : 10px 0;
+}
+
+.angka > button, .operand > button {
+    background: white;
+    border: 1px solid black;
+    font-size : 15px;
+    padding : 15px;
+    cursor : pointer;
+    border-radius: 20%;
+}
+
+.angka > button:hover, .operand > button:hover {
+    background: greenyellow;
+} */
+
+.screen {
+    padding : 20px;
+    background: black;
+    color: greenyellow;
+    font-size: 24px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.grid-container {
+    display: grid;
+    grid-gap: 20px 20px;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+}
+  
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 28px;
+    text-align: center;
+}
+
+.grid-item:hover{
+    background: greenyellow;
+    cursor: pointer;
+}
