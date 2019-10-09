@@ -1,0 +1,72 @@
+#simpleBox {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgb(26, 26, 163);
+    border-radius: 25px;
+    background-color: rgb(114, 114, 243);
+    color: white;
+    padding: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.calcButton {
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgb(26, 26, 163);
+    border-radius: 30px;
+    color: black;
+    background: white;
+    /* padding: 10px; */
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+.operandButton {
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgb(26, 26, 163);
+    border-radius: 30px;
+    color: black;
+    background: #eaeaea;
+    /* padding: 10px; */
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.clear {
+    margin-top: 10px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgb(26, 26, 163);
+    border-radius: 30px;
+    color: black;
+    background: white;
+    /* padding: 10px; */
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.calcButton:hover, .operandButton:hover, .clear:hover {
+    margin-top: 10px;
+    background: wheat;
+}
+
+.result {
+    /* margin-top: 10px; */
+    padding-top: 1px;
+    padding-left: 4px;
+    width: 200px;
+    height: 60px;
+    background: black;
+    color: greenyellow;
+    font-family: 'Courier New', Courier, monospace;
+}
+h2 {
+    width: 50px;
+}
