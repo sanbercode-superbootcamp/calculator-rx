@@ -1,26 +1,67 @@
-.angka,.operand {
-  padding: 20px;
-  border: 1px inset black;
-  margin: 10px 0;
+:root {
+  --calculator-width: 250px;
+  --calculator-height: 530px;
+}
+
+#box{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: red;
+  text-align: center;
+  padding: 130px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: auto;
+  width: 20%;
+}
+
+header.calculator {
+  position: absolute;
+  width: var(--calculator-width);
+  height: var(--calculator-height);
+  background: darkgrey;
+}
+
+.angka, .operand {
+  padding-left: 15px;
+  border: 2px inset grey;
+  margin: 10px 10px;
+  align: center;
+
 }
 
 .angka > button, .operand > button {
   background: white;
   border: 1px solid black;
   font-size: 18px;
-  padding: 5px;
   cursor: pointer;
-  border-radius: 20%;
+  border-radius: 10%;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
 }
 
 .angka > button:hover, .operand > button:hover {
-  background: greenyellow;
+  background: wheat;
+}
+
+.angka #null {
+  visibility: hidden;
 }
 
 .screen {
-  padding: 20px;
+  height: calc(var(--calculator-height) * 0.15);
+  margin: 20px 15px;
+  text-align: right;
+  padding: 1px 20px 1px 20px;
   background: black;
   color: greenyellow;
-  font-size: 24px;
+  font-size: 18px;
   font-family: 'Courier New', Courier, monospace;
 }
