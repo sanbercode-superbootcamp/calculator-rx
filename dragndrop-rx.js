@@ -1,35 +1,34 @@
+
 const { fromEvent } = rxjs;
-const { tap, switchMap, map, takeUntil, filter } = rxjs.operators;
+const { tap, switchMap, map, takeUntil } = rxjs.operators;
 
-const box = document.getElementById("box");
+const box = document.getElementById('box');
 
-const mousedown$ = fromEvent(box, "mousedown");
-const mousemove$ = fromEvent(document, "mousemove");
-const mouseup$ = fromEvent(box, "mouseup");
+//sumbernya, stream of mousedown
+const mousedown$ = fromEvent(box, 'mousedown');
+//stream buat mousemove
+const mousemove$ = fromEvent(document, 'mousemove');
+//stream buat mouseup
+const mouseup$ = fromEvent(box, 'mouseup');
 
+//rangkai pipelinenya
 const drag$ = mousedown$.pipe(
-  tap(() => console.log("lagi neken")),
-  switchMap(start => {
+  switchMap((start) => { //start is ouput of mousedown$ & // switchMap pindah keran/pipa
     return mousemove$.pipe(
-      map(move => {
+      map((move) => { //move output of mousemove$
         return {
           top: move.clientY - start.offsetY,
           left: move.clientX - start.offsetX
         };
-      }),
-      filter(pos => {
-        return pos.left < (window.innerWidth * 0.5)
-      }),
-      takeUntil(
-        mouseup$.pipe(
-          tap(() => console.log("udah diangkat"))
-        )
-      ),
+      }),//map itu stream baru karena ada suatu operasi
+      takeUntil(mouseup$)
     );
   })
 );
 
-drag$.subscribe(position => {
+//yang nampung
+drag$.subscribe((position) => {
+  console.log(position.top, position.left);
   box.style.top = position.top + "px";
   box.style.left = position.left + "px";
 });
