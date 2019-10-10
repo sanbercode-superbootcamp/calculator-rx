@@ -1,0 +1,29 @@
+.angka, .operand, .hasil {
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.angka > button, .operand > button, .hasil > button {
+    background: white;
+    border: 1px solid black;
+    font-size: 18px;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 20%;
+}
+
+.angka > button:hover, .operand > button:hover {
+    background: grey;
+}
+
+#screen {
+    padding: 10px;
+    height: 50px;
+    background: #719180;
+    color:black;
+    font-size: 40px;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+}
