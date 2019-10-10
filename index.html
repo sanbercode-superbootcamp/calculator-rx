@@ -1,31 +1,42 @@
 <html>
-  <head>
-    <title>calculator reactives</title>
-    <link rel="stylesheet" href="/style.css">
-  </head>
-  <body>
-    <div class="angka">
-      <button>0</button>
-      <button>1</button>
-      <button>2</button>
-      <button>3</button>
-      <button>4</button>
-      <button>5</button>
-      <button>6</button>
-      <button>7</button>
-      <button>8</button>
-      <button>9</button>
-    </div>
-
-    <div class="operand">
-      <button>+</button>
-    </div>
-
-    <div class="screen">
-      <h1>0</h1>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.5.3/rxjs.umd.min.js" type="text/javascript"></script>
-    <script src="/calculator.js" type="text/javascript"></script>
-  </body>
+    <head>
+        <title>Calculator Reactive</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <center>
+            <h1>=====> Calculator <=====</h1>
+            <div class="box">
+                <div class="screen">
+                    <input type="text" value="" id="display">
+                </div>
+                <div class="angka">
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <br><br>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <br><br>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <br><br>
+                    <button>0</button>
+                    <button id="eq">=</button>
+                    <button>C</button>
+                </div>
+        
+                <div class="operand">
+                    <button>+</button><br><br>
+                    <button>-</button><br><br>
+                    <button>*</button><br><br>
+                    <button>/</button><br><br>
+                </div>
+            </div>
+        </center>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.5.3/rxjs.umd.min.js"></script>
+    <script src="/calculator.js"></script>
 </html>

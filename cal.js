@@ -1,5 +1,5 @@
 const { merge, fromEvent } = rxjs
-const { map, takeUntil, tap, switchMap } = rxjs.operators
+const { map, takeUntil, tap } = rxjs.operators
 
 const numbers = document.querySelectorAll(".angka>button")
 const operator = document.querySelectorAll(".operand>button")
@@ -22,7 +22,6 @@ const eight$ = fromEvent(numbers[1], 'click').pipe(map(() => 8))
 const nine$  = fromEvent(numbers[2], 'click').pipe(map(() => 9))
 
 const eq$    = fromEvent(numbers[10], 'click').pipe(map(() => "equal"))
-const clear$    = fromEvent(numbers[11], 'click').pipe(map(() => "clear"))
 
 const plus$  = fromEvent(plus, 'click').pipe(map(() => "+"))
 const minus$ = fromEvent(minus, 'click').pipe(map(() => "-"))
@@ -39,7 +38,7 @@ let number2 = ''
 let operand = null
 let res = ''
 
-const calculator$ = numbers$
+const num1$ = merge(numbers$,operators$)
 .pipe(
     tap((number) => {
     number1 = number1 + number
@@ -48,51 +47,50 @@ const calculator$ = numbers$
     takeUntil(operators$),
     map((operator) => {
     return operator
-    }),
-    switchMap(() => {
-        return operators$.pipe(
-            tap((operator) => {
-                operand = operator
-                display.value = operand
-            })
-        )
-    }),
-    switchMap(() => {
-        return numbers$.pipe(
-            tap((number) => {
-                number2 = number2 + number
-                display.value = number2
-                }),
-                takeUntil(eq$),
-                map((operator) => {
-                return operator
-            })
-        )
     })
 )
 
-calculator$.subscribe((calc) => {
-    console.log(number1, operand, number2)
+const operand$ = operators$.pipe(
+    tap((operator) => {
+        operand = operator
+        display.value = ''
+    }),
+    // takeUntil(numbers$),
+    // map((number) => {
+    // return number
+    // })
+)
+
+const num2$ = merge(numbers$,operators$)
+.pipe(
+    tap((n) => {
+    number2 = number2 + n
+    display.value = number2
+    }),
+    // takeUntil(operators$),
+    // map((operator) => {
+    // return operator
+    // })
+)
+  
+num1$.subscribe((calc) => {
+    // console.log(display.value)
 })
 
-eq$.subscribe((c) => {
-    if (operand == "+") {
-        res = parseInt(number1) + parseInt(number2)
-    } else if (operand == "-") {
-        res = parseInt(number1) - parseInt(number2)
-    } else if (operand == "*") {
-        res = parseInt(number1) * parseInt(number2)
-    } else if (operand == "/") {
-        res = parseInt(number1) / parseInt(number2)
-    }
-    display.value = res
+operand$.subscribe((op) => {
+    display.value = ''
 })
 
-clear$.subscribe((clear) => {
-    // number1 = ''
-    // number2 = ''
-    // operand = null
-    // display.value = ''
-    console.log(number1, operand, number2)
-    window.location.reload(true)
+num2$.subscribe((calc) => {
+    
 })
+
+eq$.subscribe((ccc) => {
+    console.log(number1, operand, number2)
+    display.value = parseInt(number1) + parseInt(number2)
+})
+
+function clear() {
+    display.value = ''
+}
+
