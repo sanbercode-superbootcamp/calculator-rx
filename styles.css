@@ -1,0 +1,43 @@
+#calculator {
+  width: 80%;
+  height: 300px;
+  margin: 0 auto;
+  background-color: #ddd;
+
+  display: flex;
+}
+
+#control {}
+
+#screen {
+  width: 100%;
+  padding: 10px;
+  background-color: #000;
+  color: green;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.numbers, .operations, .clear {
+  padding: 10px;
+  font-size: 20pt;
+  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.numbers button {
+  width: 32%;
+}
+
+.operations button {
+  width: 20%;
+}
+
+.clear button {
+  width: 100%;
+}
+
+button {
+  height: 35px;
+}
