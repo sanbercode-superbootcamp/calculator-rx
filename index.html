@@ -1,27 +1,42 @@
 <html>
     <head>
         <title>Calculator Reactive</title>
-        <style>
-            #box {
-                width: 100px;
-                height: 100px;
-                position: absolute;
-                background: lightgreen;
-                text-align: center;
-                font-family: arial;
-                padding: 30px 10px 10px 10px;
-                font-size: 25px;
-                color: white;
-                border-radius: 100px 0px 100px 0px;
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="box">
-            
-        </div>
+        <center>
+            <h1>=====> Calculator <=====</h1>
+            <div class="box">
+                <div class="screen">
+                    <input type="text" value="" id="display">
+                </div>
+                <div class="angka">
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <br><br>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <br><br>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <br><br>
+                    <button>0</button>
+                    <button id="eq">=</button>
+                    <button>C</button>
+                </div>
+        
+                <div class="operand">
+                    <button>+</button><br><br>
+                    <button>-</button><br><br>
+                    <button>*</button><br><br>
+                    <button>/</button><br><br>
+                </div>
+            </div>
+        </center>
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.5.3/rxjs.umd.min.js"></script>
-    <!-- <script src="/calculator.js"></script> -->
-    <script src="/calculator-rx.js"></script>
+    <script src="/calculator.js"></script>
 </html>

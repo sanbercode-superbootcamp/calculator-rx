@@ -1,0 +1,57 @@
+body{
+    font-family: 'Courier New';
+}
+
+button{
+    width: 60px
+}
+h1{
+    color: #f7b2f6;
+    padding-top: 20px;
+}
+#display{
+    padding: 10px;
+    width: 100%;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: right;
+    font-size: 30px
+}
+.box{
+    border: 1px solid pink;
+    height: 370px;
+    width: 345px;
+    background: #edc5ec
+}
+.angka, .operand{
+    padding: 20px;
+}
+
+.angka{
+    float: left;
+}
+.operand{
+    float: left;
+}
+
+.angka > button, .operand > button {
+    background: white;
+    border: 1px solid magenta;
+    font-size: 20px;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 20%;
+}
+
+.angka > button:hover, .operand > button:hover{
+    background: pink
+}
+
+.screen{
+    padding: 10px;
+    border: 1px solid pink;
+    margin: 10px;
+    border-radius: 10px;
+    background: #eee;
+    text-align: right;
+}
