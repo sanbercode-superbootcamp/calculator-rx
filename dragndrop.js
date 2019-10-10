@@ -1,5 +1,6 @@
-// document.addEventListener("mousemove", (moveEvent) => {
-//   console.log(moveEvent.clientX, moveEvent.clientY);
+// ngetrack posisi cursor
+// document.addEventListener("mousemove", (MouseEvent) => {
+//     console.log(MouseEvent.clientX, MouseEvent.clientY);
 // });
 
 /*
@@ -8,29 +9,27 @@
 3. tombolnya di lepas dari kotak
 */
 
-
 const box = document.getElementById("box");
 
 // kotaknya di klik
 box.addEventListener('mousedown', (start) => {
-  // geser kotak dari event mousemove
-  const onMouseMove = (move) => {
-    // ngilangin highlight di text
-    move.preventDefault();
-  
-    const positionTop = move.clientY - start.offsetY;
-    const positionLeft = move.clientX - start.offsetX;
-    box.style.top = positionTop + "px";
-    box.style.left = positionLeft + "px";
-  };
+    // geser kotak dari event mousemove
+    const onMouseMove = (move) => {
+        // menghilangkan highlight di text
+        move.preventDefault();
 
-  // pas digerakin, boxnya ikut geser
-  document.addEventListener('mousemove', onMouseMove);
+        const positionTop = move.clientY - start.offsetY;
+        const positionLeft = move.clientX - start.offsetX;
+        box.style.top = positionTop + "px";
+        box.style.left = positionLeft + "px";
+    };
 
-  // pas tombolnya di angkat
-  box.addEventListener('mouseup', () => {
-    // hapus listener mousemove
-    document.removeEventListener('mousemove', onMouseMove);
-  });
+    // pas di klik di gerakin, boxnya bergeser
+    document.addEventListener('mousemove', onMouseMove);
+
+    // pas tombolnya di angkat
+    box.addEventListener('mouseup', () => {
+        // hapus listener mousemove
+        document.removeEventListener('mousemove', onMouseMove);
+    });
 });
-
