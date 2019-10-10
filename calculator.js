@@ -64,12 +64,11 @@ const calculator$ = operators$.pipe(
       }
     }
     operator = input;
-    // if (input == '=') {
-    //   document.getElementById('log').textContent += ` = ${result} `;
-    // } else {
-    //   document.getElementById('log').textContent += `${resultTemp} ${input} `;
-    // }
-    document.getElementById('log').textContent += `${resultTemp} ${input} `;
+    if (input == '=') {
+      document.getElementById('log').textContent += `${resultTemp} ${input} ${result}`;
+    } else {
+      document.getElementById('log').textContent += `${resultTemp} ${input} `;
+    }
     resultTemp = ''; // reset resultTemp
   }),
   map(() => result)
